@@ -6,8 +6,10 @@ import sys
 import h5py
 import numpy as np
 import pyqtgraph as pg
+import pyqtgraph.exporters
 import fenics as fc
 import dolfin as df
+
 
 import matplotlib
 matplotlib.use('Agg')
@@ -27,6 +29,7 @@ from helperFiles.constants import *
 from helperFiles.createColorTiles import *
 from helperFiles.classes.IceCube import *
 from helperFiles.classes.Dataset import *
+from helperFiles.classes.Snowball import *
 
 from helperFiles.classes.support.expressions import *
 from helperFiles.classes.support.momentum import *
@@ -59,7 +62,9 @@ def main(argv):
     else:
         print("Welcome to Snowball Interface")
         datasetDict = createInitialDataSets()
-
+        
+        snowball = Snowball(datasetDict)
+        snowball.createImage('velocity')
 
     sys.exit()
 
