@@ -21,7 +21,7 @@ class Snowball():
         colorMapFile.close()
 
         plt = pg.ImageItem(self.colorData)
-
+        plt.scale(.5,.5)
         plt.save('./cache/fileName.png')
         # create an exporter instance, as an argument give it
         # the item you wish to export
