@@ -14,15 +14,19 @@
 #
 ##################################
 
-
-import h5py
-import pyqtgraph as pg
-from ..constants import *
-from ..createColorMaps import *
-from pylab import sqrt, linspace
-from scipy.interpolate import RectBivariateSpline
-import numpy as np
+from __future__ import division, print_function
 import time
+import sys
+import h5py
+import numpy as np
+import pyqtgraph as pg
+import fenics as fc
+import dolfin as df
+
+from scipy.interpolate import RectBivariateSpline
+from pylab import sqrt, linspace
+from ..constants import *
+from ..createColorTiles import *
 
 class Dataset():
     def __init__(self, name, pen):
@@ -46,9 +50,10 @@ class Dataset():
         self.interp   = RectBivariateSpline(bed_xarray, bed_yarray, np.flipud(self.data).transpose())
 
         #Only create color map if we wish to render possible in the future where we wish to create Dataset for backend web
-        if render and name != 'VX' and name != 'VY':
-            createColorMap(self)
-            self.pathPlotItem = pg.PlotDataItem([0,0], pen=self.pen)
+        #if render and name != 'VX' and name != 'VY':
+        #    createColorMap(self)
+        #    self.pathPlotItem = pg.PlotDataItem([0,0], pen=self.pen)
+        self.createColorMap()
 
 
     def setData(self, name):
@@ -67,5 +72,44 @@ class Dataset():
     def getInterpolatedValue(self, xPosition, yPosition):
         return self.interp(xPosition, yPosition)
 
-    
+    def createColorMap(self):
+        colorMapFile = h5py.File(cmFileName, 'r')
+        self.colorData = colorMapFile[self.name][:]
+            
+        # self.imageItem = pg.ImageItem(self.colorData)
+        # self.imageItem.setOpts(axisOrder='row-major')
+
+        # self.plotWidget = pg.PlotWidget()
+        # self.plotWidget.addItem(self.imageItem)
+        # self.plotWidget.setAspectLocked(True)
+        # self.plotWidget.invertY(True)
+
+        # self.colorMap = getCM(self.name)
+        # self.colorBar = getColorBar(self.name, self.colorMap)
+
+        '''Commented out because it is broken. line that breaks it ->    self.colorBarAnchorWidget.setParentItem(self.plotWidget.getPlotItem())
+        self.colorBarAnchorWidget = ColorBarAnchorWidget()
+        self.colorBarAnchorWidget.hideAxis('left')
+        self.colorBarAnchorWidget.hideAxis('bottom')
+        self.colorBarAnchorWidget.addItem(self.colorBar)
+        
+
+
+        self.plotWidget.addItem(self.colorBarAnchorWidget)
+
+        self.colorBarAnchorWidget.setFixedWidth(158)
+        self.colorBarAnchorWidget.setFixedHeight(250)
+        self.colorBarAnchorWidget.setAspectLocked(True)
+
+        self.colorBarAnchorWidget.getViewBox().setRange(xRange=[-64.0, 114], yRange=[-15,247], padding=0.0)
+        self.colorBarAnchorWidget.invertY(True)
+
+        self.colorBarAnchorWidget.setParentItem(self.plotWidget.getPlotItem())
+            
+        self.colorBarAnchorWidget.getViewBox().setMouseEnabled(x=False, y=False)
+        self.colorBarAnchorWidget.anchor(itemPos=(1,0), parentPos=(1,0), offset=(-10,-10))
+       
+        '''
+        colorMapFile.close()
+
         

@@ -1,43 +1,4 @@
-def createColorMap(data):
-    colorMapFile = h5py.File(cmFileName, 'r')
-    data.colorData = colorMapFile[data.name][:]
-        
-    data.imageItem = pg.ImageItem(data.colorData)
-    data.imageItem.setOpts(axisOrder='row-major')
 
-    data.plotWidget = pg.PlotWidget()
-    data.plotWidget.addItem(data.imageItem)
-    data.plotWidget.setAspectLocked(True)
-    data.plotWidget.invertY(True)
-
-
-    data.colorMap = getCM(data.name)
-    data.colorBar = getColorBar(data.name, data.colorMap)
-
-    '''Commented out because it is broken. line that breaks it ->    data.colorBarAnchorWidget.setParentItem(data.plotWidget.getPlotItem())
-    data.colorBarAnchorWidget = ColorBarAnchorWidget()
-    data.colorBarAnchorWidget.hideAxis('left')
-    data.colorBarAnchorWidget.hideAxis('bottom')
-    data.colorBarAnchorWidget.addItem(data.colorBar)
-    
-
-
-    data.plotWidget.addItem(data.colorBarAnchorWidget)
-
-    data.colorBarAnchorWidget.setFixedWidth(158)
-    data.colorBarAnchorWidget.setFixedHeight(250)
-    data.colorBarAnchorWidget.setAspectLocked(True)
-
-    data.colorBarAnchorWidget.getViewBox().setRange(xRange=[-64.0, 114], yRange=[-15,247], padding=0.0)
-    data.colorBarAnchorWidget.invertY(True)
-
-    data.colorBarAnchorWidget.setParentItem(data.plotWidget.getPlotItem())
-        
-    data.colorBarAnchorWidget.getViewBox().setMouseEnabled(x=False, y=False)
-    data.colorBarAnchorWidget.anchor(itemPos=(1,0), parentPos=(1,0), offset=(-10,-10))
-   
-    '''
-    colorMapFile.close()
 
 
 def getCM(dataName):
