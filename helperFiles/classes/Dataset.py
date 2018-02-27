@@ -24,6 +24,8 @@ import fenics as fc
 import dolfin as df
 
 from scipy.interpolate import RectBivariateSpline
+import matplotlib
+matplotlib.use('Agg')
 from pylab import sqrt, linspace
 from ..constants import *
 from ..createColorTiles import *

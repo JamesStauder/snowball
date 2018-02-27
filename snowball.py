@@ -9,6 +9,8 @@ import pyqtgraph as pg
 import fenics as fc
 import dolfin as df
 
+import matplotlib
+matplotlib.use('Agg')
 from pylab import sqrt, linspace
 from scipy.interpolate import RectBivariateSpline
 # import fenics as fc
