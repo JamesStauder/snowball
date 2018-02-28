@@ -6,11 +6,9 @@ import sys
 import h5py
 import numpy as np
 import pyqtgraph as pg
-import pyqtgraph.exporters
-import fenics as fc
-import dolfin as df
-
-
+# import pyqtgraph.exporters
+# import fenics as fc
+# import dolfin as df
 import matplotlib
 matplotlib.use('Agg')
 from pylab import sqrt, linspace
@@ -27,16 +25,16 @@ from scipy.interpolate import RectBivariateSpline
 # from classes.FlowIntegrator import *
 from helperFiles.constants import *
 from helperFiles.createColorTiles import *
-from helperFiles.classes.IceCube import *
-from helperFiles.classes.Dataset import *
+# from helperFiles.classes.IceCube import *
+# from helperFiles.classes.Dataset import *
 from helperFiles.classes.Snowball import *
 
-from helperFiles.classes.support.expressions import *
-from helperFiles.classes.support.momentum import *
-from helperFiles.classes.support.fenics_optimizations import *
+# from helperFiles.classes.support.expressions import *
+# from helperFiles.classes.support.momentum import *
+# from helperFiles.classes.support.fenics_optimizations import *
 
-from helperFiles.classes.support.physical_constants    import * 
-from helperFiles.classes.support.simulation_parameters import * 
+# from helperFiles.classes.support.physical_constants    import * 
+# from helperFiles.classes.support.simulation_parameters import * 
 
 # from numpy import array
 # from dolfin import Constant,Max,sqrt
@@ -56,14 +54,13 @@ def main(argv):
 
     if(len(argv) > 1):
         if("--help" in argv):
-            printMainMenu()            
+            printHelpMenu()            
         for argument in argv:
             print("use --help for help")
     else:
         print("Welcome to Snowball Interface")
-        datasetDict = createInitialDataSets()
         
-        snowball = Snowball(datasetDict)
+        snowball = Snowball()
         snowball.createImage('velocity')
 
     sys.exit()
@@ -78,7 +75,7 @@ Creator: James Stauder
 Date created: 1/31/18
 Last edited: 1/31/18
 '''
-def printMainMenu():
+def printHelpMenu():
     print("Snowball Greenland Tile Generator")
     print("usage: snowball.py [--help]")
     print("optional arguments:")

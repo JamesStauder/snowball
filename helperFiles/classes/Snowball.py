@@ -1,13 +1,14 @@
 import pyqtgraph as pg
 import pyqtgraph.exporters
 import h5py
+import numpy as np
 
 from ..constants import *
 
 class Snowball():
-    def __init__(self, datasetDict):
-    	print("Snowball Init")
-    	self.data = datasetDict
+    def __init__(self):
+        print("Snowball Init")
+        #self.data = datasetDict
 
     # TODO: seperate into seperate functions
     # TODO: Does not need to be done in the black box
@@ -20,8 +21,11 @@ class Snowball():
         self.colorData = colorMapFile[name][:]
         colorMapFile.close()
 
-        plt = pg.ImageItem(self.colorData)
-        plt.scale(.5,.5)
+        
+        plotData = np.flip(np.rot90(np.array(self.colorData)[::10,::10]),0)
+        
+        plt = pg.ImageItem(plotData)
+        # plt.scale(.5,.5)
         plt.save('./cache/fileName.png')
         # create an exporter instance, as an argument give it
         # the item you wish to export
