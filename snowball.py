@@ -6,38 +6,13 @@ import sys
 import h5py
 import numpy as np
 import pyqtgraph as pg
-# import pyqtgraph.exporters
-# import fenics as fc
-# import dolfin as df
 import matplotlib
 matplotlib.use('Agg')
 from pylab import sqrt, linspace
 from scipy.interpolate import RectBivariateSpline
-# import fenics as fc
-# import dolfin as df
-
-# from classes.Dataset import *
-# from support.expressions import *
-# from support.momentum import *
-# from support.fenics_optimizations import *
-# from classes.Colorbar import *
-# from classes.ColorBarAnchorWidget import *
-# from classes.FlowIntegrator import *
 from helperFiles.constants import *
 from helperFiles.createColorTiles import *
-# from helperFiles.classes.IceCube import *
-# from helperFiles.classes.Dataset import *
 from helperFiles.classes.Snowball import *
-
-# from helperFiles.classes.support.expressions import *
-# from helperFiles.classes.support.momentum import *
-# from helperFiles.classes.support.fenics_optimizations import *
-
-# from helperFiles.classes.support.physical_constants    import * 
-# from helperFiles.classes.support.simulation_parameters import * 
-
-# from numpy import array
-# from dolfin import Constant,Max,sqrt
 
 '''
 Main function
