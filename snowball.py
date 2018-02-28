@@ -11,7 +11,6 @@ matplotlib.use('Agg')
 from pylab import sqrt, linspace
 from scipy.interpolate import RectBivariateSpline
 from helperFiles.constants import *
-from helperFiles.createColorTiles import *
 from helperFiles.classes.Snowball import *
 
 '''

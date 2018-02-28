@@ -27,12 +27,4 @@ class Snowball():
         plt = pg.ImageItem(plotData)
         # plt.scale(.5,.5)
         plt.save('./cache/fileName.png')
-        # create an exporter instance, as an argument give it
-        # the item you wish to export
-        # exporter = pg.exporters.ImageExporter(plt.plotItem)
         
-        # set export parameters if needed
-        # exporter.parameters()['width'] = 100.0   # (note this also affects height parameter)
-        
-        # save to file
-        # exporter.export('./cache/fileName.png')
